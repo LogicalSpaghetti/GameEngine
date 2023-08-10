@@ -1,5 +1,7 @@
 package main.me.spaghetti.main.constructors.blocks;
 
+import main.me.spaghetti.main.imageMod.RescaleImage;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -30,17 +32,7 @@ public class CodeBlock {
     public static void basicStates(JPanel panel) {
         System.out.println("happened!");
         // size of each segment (1px gap between each), width = 176, 2, 16; height = 32, 2, 48
-        panel.setSize( 176 + 4 + 16, 32 + 4 + 48);
-        JLabel label = new JLabel();
-        label.setIcon(new ImageIcon("src/main/resources/subdividedBlock3.png"));
-        label.setBounds(0, 0, label.getIcon().getIconWidth(), label.getIcon().getIconHeight());
-        panel.setBounds(0,0,panel.getWidth(),panel.getHeight());
-        panel.add(label);
-        panel.setLayout(new GridLayout(3,3,0,0));
-        label.setVisible(true);
         panel.setVisible(true);
-
-        System.out.println(panel);
     }
 
 }

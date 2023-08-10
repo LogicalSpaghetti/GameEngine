@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Initial project">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/CodeBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/userInputs/Stringy/TextInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/userInputs/bool/TrueFalse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/userInputs/doubledouble/Number.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/blue_block.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/subdivided block 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/subdivided block 2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/subdividedBlock3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/palantir-java-format.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/palantir-java-format.xml" afterDir="false" />
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Simplified RescaleImage">
+      <change afterPath="$PROJECT_DIR$/src/DraggablePanelsExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/CodeBlock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/CodeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/imageMod/RescaleImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/imageMod/RescaleImage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,12 +65,28 @@
       <option name="project" value="LOCAL" />
       <updated>1691281302658</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Lots of things added">
+      <created>1691506867058</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691506867058</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Simplified RescaleImage">
+      <created>1691507106007</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691507106007</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial project" />
+    <MESSAGE value="Lots of things added" />
+    <MESSAGE value="Simplified RescaleImage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified RescaleImage" />
   </component>
 </project>
