@@ -1,4 +1,4 @@
-package main.me.spaghetti.main.imageMod;
+package main.me.spaghetti.main.modifyImage;
 
 import javax.swing.*;
 import java.awt.*;

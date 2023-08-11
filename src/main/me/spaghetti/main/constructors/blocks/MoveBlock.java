@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import static main.me.spaghetti.main.Main.blockArea;
 import static main.me.spaghetti.main.Main.frame;
 import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
 
@@ -15,6 +16,7 @@ import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
 public class MoveBlock extends JPanel implements MouseListener, MouseMotionListener {
 
     private Point initialClick;
+    private Point lastStableLocation;
 
     public MoveBlock(int x, int y, int width, int height, String type) {
 
@@ -31,12 +33,11 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     }
 
     private Color getColorOfType(String type) {
-        Color color = new Color(0x000000);
-        switch (type) {
-            case "Motion" -> color = new Color(0x0071f3);
-            case "Looks" -> color = new Color(0x9d00ff);
-        }
-        return color;
+        return switch (type) {
+            case "Motion" -> new Color(0x0071f3);
+            case "Looks" -> new Color(0x9d00ff);
+            default -> Color.black;
+        };
     }
 
     @Override
@@ -48,11 +49,14 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     public void mousePressed(MouseEvent e) {
         getParent().setComponentZOrder(this, 0);
         initialClick = e.getPoint();
+        lastStableLocation = this.getLocation();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if (!blockArea.getBounds().intersects(this.getBounds())) {
+            setLocation(lastStableLocation);
+        }
     }
 
     @Override
