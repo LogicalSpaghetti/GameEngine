@@ -66,6 +66,11 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
         setFocusable(true);
     }
 
+    public static void refreshDisplay(MyFrame frame) {
+        frame.revalidate();
+        frame.repaint();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
