@@ -32,15 +32,13 @@ public class MyButton extends JPanel implements MouseListener, MouseMotionListen
     public void mousePressed(MouseEvent e) {
         blocks.add(new MoveBlock(getX() + getParent().getX(), getY() + getParent().getY(), 200, 100, type));
         blocks.get(blocks.size() - 1).grabFocus();
-        int startX = e.getX();
-        int startY = e.getY();
-        Point buttonLocation = new Point(getLocationOnScreen().x - frame.getX(), getLocationOnScreen().y - frame.getY());
+        Point mouseWhereOnButton = new Point(e.getX(), e.getY());
+        Point clickPointRelativeToFrame = SwingUtilities.convertPoint(e.getComponent(), new Point(e.getX(), e.getY()), frame);
 
         this.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                blocks.get(blocks.size() - 1).setLocation(e.getX() - startX + buttonLocation.x, e.getY() - startY + buttonLocation.y); // Center the panel under the cursor
-                System.out.println(startX + " " + startY);
+                blocks.get(blocks.size() - 1).setLocation(frame.getMousePosition().x - mouseWhereOnButton.x - (frame.getWidth() - frame.getContentPane().getWidth()), frame.getMousePosition().y - mouseWhereOnButton.y - (frame.getHeight() - frame.getContentPane().getHeight())); // Center the panel under the cursor
             }
         });
     }

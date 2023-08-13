@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="I need to be doing this at the end of each day, so I actually remember what I changed.">
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/DraggableCloneExample.java" afterDir="false" />
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Tiles can be created now, but get misaligned after being moved.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/DraggableCloneExample.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/RegionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/RegionPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/imageMod/RescaleImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/modifyImage/RescaleImage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691717668416</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tiles can be created now, but get misaligned after being moved.">
+      <created>1691786697792</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691786697792</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -103,6 +107,7 @@
     <MESSAGE value="Lots of things added" />
     <MESSAGE value="Simplified RescaleImage" />
     <MESSAGE value="I need to be doing this at the end of each day, so I actually remember what I changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="I need to be doing this at the end of each day, so I actually remember what I changed." />
+    <MESSAGE value="Tiles can be created now, but get misaligned after being moved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tiles can be created now, but get misaligned after being moved." />
   </component>
 </project>
