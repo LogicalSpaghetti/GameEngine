@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static main.me.spaghetti.main.Main.*;
+
 public class MyFrame extends JFrame implements ActionListener, KeyListener {
 
     public MyFrame(String title, int width, int height) {
@@ -20,7 +22,9 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
 	public MyFrame(String title) {
         setTitle(title);
         this.setSize(500,500);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        setFullScreen(this);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         BasicFrame();
     }
 
@@ -30,12 +34,24 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
         setVisible(true);
     }
 
+    public static void setFullScreen(MyFrame frame) {
+        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice defaultScreenDevice = graphicsEnvironment.getDefaultScreenDevice();
+        Rectangle bounds = defaultScreenDevice.getDefaultConfiguration().getBounds();
+
+        Insets screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(defaultScreenDevice.getDefaultConfiguration());
+        bounds.height -= screenInsets.bottom;
+
+        frame.setBounds(bounds);
+    }
+
     // all code for decorating the top bar and widget of a frame, as well as the background
     private void decorateFrame() {
         setIcon();
         getContentPane().setBackground(new Color(0xFFFFFF));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
+        setLayout(new BorderLayout());
+        setUndecorated(true);
     }
 
     private void setIcon() {
@@ -69,6 +85,12 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
     public static void refreshDisplay(MyFrame frame) {
         frame.revalidate();
         frame.repaint();
+    }
+
+    public static void setWindowed(MyFrame frame) {
+        frame.setSize(windowedSize.width, windowedSize.height);
+        frame.setLocation(windowedLocation);
+        frame.setResizable(true);
     }
 
     @Override

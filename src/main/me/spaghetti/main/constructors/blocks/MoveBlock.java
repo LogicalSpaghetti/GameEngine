@@ -1,15 +1,12 @@
 package main.me.spaghetti.main.constructors.blocks;
 
-import main.me.spaghetti.main.constructors.MyFrame;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import static main.me.spaghetti.main.Main.blockArea;
-import static main.me.spaghetti.main.Main.frame;
+import static main.me.spaghetti.main.Main.*;
 import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
 
 // "move" int "pixels"
@@ -17,9 +14,11 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     private Point initialClick;
     private Point lastStableLocation;
+    public String type;
 
     public MoveBlock(int x, int y, int width, int height, String type) {
 
+        this.type = type;
         this.setBackground(getColorOfType(type));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         this.setBounds(x,y, width, height);
@@ -27,9 +26,10 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         this.setVisible(true);
-        frame.add(this);
+        panel.add(this);
         getParent().setComponentZOrder(this, 0);
         refreshDisplay(frame);
+        blocks.add(this);
     }
 
     private Color getColorOfType(String type) {
@@ -40,6 +40,14 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         };
     }
 
+    private boolean isNotWithinBlockArea() {
+        return !blockArea.getBounds().intersects(this.getBounds());
+    }
+
+    private boolean inTrash() {
+        return addAndDeleteZone.getBounds().contains(this.getLocation());
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -47,6 +55,10 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (isNotWithinBlockArea()) {
+            new MoveBlock(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.type);
+        }
+
         getParent().setComponentZOrder(this, 0);
         initialClick = e.getPoint();
         lastStableLocation = this.getLocation();
@@ -54,8 +66,16 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (!blockArea.getBounds().intersects(this.getBounds())) {
+        if (inTrash()) {
+            panel.remove(this);
+            refreshDisplay(frame);
+            return;
+        }
+        if (isNotWithinBlockArea()) {
             setLocation(lastStableLocation);
+        }
+        if (isNotWithinBlockArea()) {
+            panel.remove(this);
         }
     }
 

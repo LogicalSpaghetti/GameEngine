@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import static main.me.spaghetti.main.Main.frame;
+import static main.me.spaghetti.main.Main.panel;
 
 public class RegionPanel extends JPanel implements MouseListener {
 
@@ -15,7 +15,7 @@ public class RegionPanel extends JPanel implements MouseListener {
         setVisible(true);
         setBackground(color);
         setLayout(null);
-        frame.add(this);
+        panel.add(this);
         getParent().setComponentZOrder(this, getParent().getComponentCount() - 1);
         addMouseListener(this);
     }
