@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow.">
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Subtract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Added block snapping.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FrameTopBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FrameTopBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/Buttons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691976747820</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added block snapping.">
+      <option name="closed" value="true" />
+      <created>1692161982304</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692161982304</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -140,7 +142,9 @@
     <MESSAGE value="Tiles can be created now, but get misaligned after being moved." />
     <MESSAGE value="The JFrame was massively reworked with a custom top bar, and the code blocks can new be created and destroyed properly." />
     <MESSAGE value="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow." />
+    <MESSAGE value="Block snapping works" />
+    <MESSAGE value="Added block snapping." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added block snapping." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

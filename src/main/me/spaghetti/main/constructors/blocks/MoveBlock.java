@@ -19,6 +19,9 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     public boolean isBottom;
     private boolean isWithinBlockArea;
 
+    private MoveBlock topBlock;
+    private MoveBlock bottomBlock;
+
     public MoveBlock(int x, int y, int width, int height, String type) {
         this.isWithinBlockArea = false;
         this.type = type;
@@ -89,10 +92,18 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         fixIfOutside();
         this.isWithinBlockArea = true;
 
-        if (gBlock.isVisible()) {
+        if (gBlock.isVisible()) { // triggers if there's a valid place to snap to
             this.setLocation(gBlock.getLocation());
+            if (gBlock.top) { // true if connecting to the top of a block
+                gBlock.snapBlock.topBlock = this;
+                this.bottomBlock = gBlock.snapBlock;
+            } else { // connecting to the bottom of a block
+                gBlock.snapBlock.bottomBlock = this;
+                this.topBlock = gBlock.snapBlock;
+            }
         }
         gBlock.setVisible(false);
+        System.out.println("top = " + this.topBlock + "\nbottom = " + this.bottomBlock);
     }
 
     @Override
@@ -107,22 +118,34 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        if (this.topBlock != null) {
+            this.topBlock.bottomBlock = null;
+        }
+        if (this.bottomBlock != null) {
+            this.bottomBlock.topBlock = null;
+        }
+        this.topBlock = null;
+        this.bottomBlock = null;
+
         int deltaX = e.getX() - initialClick.x;
         int deltaY = e.getY() - initialClick.y;
 
         setLocation(getLocation().x + deltaX, getLocation().y + deltaY);
 
         // todo: for the stacking, just save the block on top and the block on bottom and it's done
-        for (MoveBlock block : blocks) { // loops through all existing blocks
-            if (block.isWithinBlockArea && !block.equals(this)) { // limits checked blocks to those within the codeArea and not the block being moved
-                // todo: turn the if conditions into their own methods so this isn't as hard to read
-                if ( Math.abs(this.getX() - block.getX()) <= 40 && Math.abs((this.getY() + this.getHeight()) - block.getY()) <= 40 && !this.isBottom && !block.isTop) {
-                    // runs if this is a valid connection for the block
-                    GhostBlock.showGhostBlock(block, this, true, gBlock);
-                    return;
-                } else if (Math.abs(this.getX() - block.getX()) <= 40 && Math.abs(this.getY() - (block.getY() + block.getHeight())) <= 40 && !this.isTop && !block.isBottom){
-                    // runs if this is close to the bottom and not the top, and they're a compatible this != top and block != bottom
-                    GhostBlock.showGhostBlock(block, this, false, gBlock);
+        // todo: if the block has one above it, don't check for top
+        for (MoveBlock block : blocks) {
+            if (block.isWithinBlockArea && !block.equals(this)) {
+                int xDiff = Math.abs(this.getX() - block.getX());
+                int yDiffTop = Math.abs((this.getY() + this.getHeight()) - block.getY());
+                int yDiffBottom = Math.abs(this.getY() - (block.getY() + block.getHeight()));
+
+                boolean topValid = (yDiffTop <= 40 && !this.isBottom && !block.isTop);
+                boolean bottomValid = (yDiffBottom <= 40 && !this.isTop && !block.isBottom);
+                boolean validConnection = xDiff <= 40 && (topValid || bottomValid);
+
+                if (validConnection) {
+                    GhostBlock.showGhostBlock(block, this, topValid, gBlock);
                     return;
                 } else {
                     gBlock.setVisible(false);
