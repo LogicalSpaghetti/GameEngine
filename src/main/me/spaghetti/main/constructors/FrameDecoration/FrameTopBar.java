@@ -69,20 +69,27 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         this.add(min);
     }
     private void maximizeButton() {
-
         JPanel max = new JPanel();
         max.setBackground(this.getBackground());
         max.setPreferredSize(new Dimension(40, 30));
         max.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.out.println(max.getComponent(0));
+                max.remove(max.getComponent(0));
                 if (isFullScreen) {
                     MyFrame.setWindowed(frame);
+                    JLabel label = new JLabel();
+                    label.setIcon(new ImageIcon("src/main/resources/full.png"));
+                    max.add(label);
                 } else {
                     windowedSize.width = frame.getWidth();
                     windowedSize.height = frame.getHeight();
                     windowedLocation = frame.getLocation();
                     MyFrame.setFullScreen(frame);
+                    JLabel label = new JLabel();
+                    label.setIcon(new ImageIcon("src/main/resources/shrink.png"));
+                    max.add(label);
                 }
                 isFullScreen = !isFullScreen;
             }
@@ -94,7 +101,6 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
             }
 
             @Override
@@ -179,7 +185,6 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         int deltaX = MouseInfo.getPointerInfo().getLocation().x - initialClick.x;
         int deltaY = MouseInfo.getPointerInfo().getLocation().y - initialClick.y;
 
-        System.out.println((initialFramePos.x + deltaX) + " " + (initialFramePos.y + deltaY));
         if(isFullScreen) {
             MyFrame.setWindowed(frame);
         }

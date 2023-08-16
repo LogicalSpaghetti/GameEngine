@@ -22,9 +22,7 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
 	public MyFrame(String title) {
         setTitle(title);
         this.setSize(500,500);
-
         setFullScreen(this);
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         BasicFrame();
     }
 

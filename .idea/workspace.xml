@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="The JFrame was massively reworked with a custom top bar, and the code blocks can new be created and destroyed properly.">
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow.">
+      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Subtract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FrameTopBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FrameTopBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/Buttons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
     </list>
@@ -27,6 +33,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": -1
+}]]></component>
   <component name="ProjectId" id="2TWmr703Orr0GNQsEUvDMhYNpCe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -111,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691974440091</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow.">
+      <created>1691976747820</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1691976747820</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -122,7 +139,8 @@
     <MESSAGE value="I need to be doing this at the end of each day, so I actually remember what I changed." />
     <MESSAGE value="Tiles can be created now, but get misaligned after being moved." />
     <MESSAGE value="The JFrame was massively reworked with a custom top bar, and the code blocks can new be created and destroyed properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="The JFrame was massively reworked with a custom top bar, and the code blocks can new be created and destroyed properly." />
+    <MESSAGE value="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a couple new blocks, made them have isTop, isBottom, or neither, and added comments explaining my plans for tomorrow." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

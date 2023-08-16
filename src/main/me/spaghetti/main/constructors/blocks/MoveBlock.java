@@ -13,15 +13,16 @@ import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
 public class MoveBlock extends JPanel implements MouseListener, MouseMotionListener {
 
     private Point initialClick;
-    private Point lastStableLocation;
+    private Point lastLocation;
     public String type;
     public boolean isTop;
     public boolean isBottom;
+    private boolean isWithinBlockArea;
 
     public MoveBlock(int x, int y, int width, int height, String type) {
-
+        this.isWithinBlockArea = false;
         this.type = type;
-        this.setBackground(getColorOfType(type));
+        this.setBackground(Buttons.getColorOfType(type));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         this.setBounds(x,y, width, height);
         this.setSize(width, height);
@@ -32,37 +33,39 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         getParent().setComponentZOrder(this, 0);
         refreshDisplay(frame);
         blocks.add(this);
-        setTopOrBottom(type);
-    }
-
-    private Color getColorOfType(String type) {
-        return switch (type) {
-            case "Motion" -> new Color(0x0071f3);
-            case "Looks" -> new Color(0x9d00ff);
-            case "Start" -> new Color(0xffff00);
-            case "Control" -> new Color(0xff7f27);
-            default -> Color.black;
-        };
-    }
-
-    private void setTopOrBottom(String type) {
-        this.isTop = false;
-        this.isBottom = false;
-        switch (type) {
-            case "Start" -> this.isTop = true;
-            case "Control" -> this.isBottom = true;
-        }
+        Buttons.setTopOrBottom(this);
     }
 
     private boolean isThisOutsideBlockArea() {
         return !blockArea.getBounds().intersects(this.getBounds());
     }
     private boolean isPointOutsideBlockArea(Point point) {
-        return !blockArea.getBounds().contains(point);
+        if (point != null) {
+            return !blockArea.getBounds().contains(point);
+        } else {
+            return false;
+        }
     }
 
     private boolean inTrash() {
-        return addAndDeleteZone.getBounds().contains(this.getLocation());
+        return addAndDeleteZone.getBounds().contains(panel.getMousePosition());
+    }
+
+    private void fixIfOutside() {
+        // deletes the block if it's within the deletion area
+        if (inTrash()) {
+            panel.remove(this);
+            refreshDisplay(frame);
+            return;
+        }
+        // if it's outside the blockArea it gets moved to its previous location
+        if (isPointOutsideBlockArea(panel.getMousePosition())) {
+            setLocation(lastLocation);
+        }
+        // if it's still outside the blockArea, then it's deleted
+        if (isThisOutsideBlockArea()) {
+            panel.remove(this);
+        }
     }
 
     @Override
@@ -78,22 +81,18 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         getParent().setComponentZOrder(this, 0);
         initialClick = e.getPoint();
-        lastStableLocation = this.getLocation();
+        lastLocation = this.getLocation();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (inTrash()) {
-            panel.remove(this);
-            refreshDisplay(frame);
-            return;
+        fixIfOutside();
+        this.isWithinBlockArea = true;
+
+        if (gBlock.isVisible()) {
+            this.setLocation(gBlock.getLocation());
         }
-        if (isPointOutsideBlockArea(panel.getMousePosition())) {
-            setLocation(lastStableLocation);
-        }
-        if (isThisOutsideBlockArea()) {
-            panel.remove(this);
-        }
+        gBlock.setVisible(false);
     }
 
     @Override
@@ -113,16 +112,23 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         setLocation(getLocation().x + deltaX, getLocation().y + deltaY);
 
-        // loop through every panel and if it's inside blockArea then generate two rectangles relative to its top and bottom left corners,
-        // and if the top left corner of the panel being dragged is within that rectangle then create a ghost outline the size of the dragged block,
-        // and stop checking so there's only one
-        // remove the ghost block at the beginning of each mouseDragged()
-        // if there's a ghost when mouseReleased(), snap the panel to that coordinate,
-        // and add it to the ArrayList associated with the tower it snapped to.
-        // for blocks within a tower that aren't the top, only check for the bottom rectangle.
-        // remember to also ignore the top or bottom check if it's an isTop or isBottom.
-
-        // for tomorrow, just get the ghosts and snapping working, save the ArrayLists for later.
+        // todo: for the stacking, just save the block on top and the block on bottom and it's done
+        for (MoveBlock block : blocks) { // loops through all existing blocks
+            if (block.isWithinBlockArea && !block.equals(this)) { // limits checked blocks to those within the codeArea and not the block being moved
+                // todo: turn the if conditions into their own methods so this isn't as hard to read
+                if ( Math.abs(this.getX() - block.getX()) <= 40 && Math.abs((this.getY() + this.getHeight()) - block.getY()) <= 40 && !this.isBottom && !block.isTop) {
+                    // runs if this is a valid connection for the block
+                    GhostBlock.showGhostBlock(block, this, true, gBlock);
+                    return;
+                } else if (Math.abs(this.getX() - block.getX()) <= 40 && Math.abs(this.getY() - (block.getY() + block.getHeight())) <= 40 && !this.isTop && !block.isBottom){
+                    // runs if this is close to the bottom and not the top, and they're a compatible this != top and block != bottom
+                    GhostBlock.showGhostBlock(block, this, false, gBlock);
+                    return;
+                } else {
+                    gBlock.setVisible(false);
+                }
+            }
+        }
     }
 
     @Override
