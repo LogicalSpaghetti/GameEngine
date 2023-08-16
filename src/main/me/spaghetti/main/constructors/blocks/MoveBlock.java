@@ -1,5 +1,7 @@
 package main.me.spaghetti.main.constructors.blocks;
 
+import main.me.spaghetti.main.Buttons.Buttons;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -32,9 +34,9 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         this.setVisible(true);
-        panel.add(this);
+        primaryPanel.add(this);
         getParent().setComponentZOrder(this, 0);
-        refreshDisplay(frame);
+        refreshDisplay(creativelyNamedGameEngineFrame);
         blocks.add(this);
         Buttons.setTopOrBottom(this);
     }
@@ -51,24 +53,40 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     }
 
     private boolean inTrash() {
-        return addAndDeleteZone.getBounds().contains(panel.getMousePosition());
+        return addAndDeleteZone.getBounds().contains(primaryPanel.getMousePosition());
     }
 
     private void fixIfOutside() {
         // deletes the block if it's within the deletion area
         if (inTrash()) {
-            panel.remove(this);
-            refreshDisplay(frame);
+            primaryPanel.remove(this);
+            refreshDisplay(creativelyNamedGameEngineFrame);
             return;
         }
         // if it's outside the blockArea it gets moved to its previous location
-        if (isPointOutsideBlockArea(panel.getMousePosition())) {
+        if (isPointOutsideBlockArea(primaryPanel.getMousePosition())) {
             setLocation(lastLocation);
         }
         // if it's still outside the blockArea, then it's deleted
         if (isThisOutsideBlockArea()) {
-            panel.remove(this);
+            primaryPanel.remove(this);
         }
+    }
+
+    private void moveInChain(MoveBlock block, int newX, int newY) {
+        block.setLocation(newX, newY);
+
+        if (block.bottomBlock != null) {
+            moveInChain(block.bottomBlock, newX , newY + block.getHeight());
+        }
+    }
+
+    private void deleteChain(MoveBlock block) {
+        // if the top block should be deleted, delete all its children
+    }
+
+    private void snapBackChain(MoveBlock block) {
+        // if the top block is dropped outside the area, snap back all its children too
     }
 
     @Override
@@ -121,16 +139,14 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         if (this.topBlock != null) {
             this.topBlock.bottomBlock = null;
         }
-        if (this.bottomBlock != null) {
-            this.bottomBlock.topBlock = null;
-        }
         this.topBlock = null;
-        this.bottomBlock = null;
 
         int deltaX = e.getX() - initialClick.x;
         int deltaY = e.getY() - initialClick.y;
+        int newX = deltaX + getLocation().x;
+        int newY = deltaY + getLocation().y;
 
-        setLocation(getLocation().x + deltaX, getLocation().y + deltaY);
+        moveInChain(this, newX, newY);
 
         // todo: for the stacking, just save the block on top and the block on bottom and it's done
         // todo: if the block has one above it, don't check for top

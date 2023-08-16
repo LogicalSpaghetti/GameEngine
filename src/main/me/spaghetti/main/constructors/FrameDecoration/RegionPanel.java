@@ -1,4 +1,4 @@
-package main.me.spaghetti.main.constructors.blocks;
+package main.me.spaghetti.main.constructors.FrameDecoration;
 
 import javax.swing.*;
 
@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import static main.me.spaghetti.main.Main.panel;
+import static main.me.spaghetti.main.Main.primaryPanel;
 
 public class RegionPanel extends JPanel implements MouseListener {
 
@@ -15,7 +15,7 @@ public class RegionPanel extends JPanel implements MouseListener {
         setVisible(true);
         setBackground(color);
         setLayout(null);
-        panel.add(this);
+        primaryPanel.add(this);
         getParent().setComponentZOrder(this, getParent().getComponentCount() - 1);
         addMouseListener(this);
     }

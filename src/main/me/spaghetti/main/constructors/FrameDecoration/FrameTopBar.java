@@ -16,14 +16,14 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
     private Point initialFramePos;
 
     public FrameTopBar() {
-        setPreferredSize(new Dimension(frame.getWidth(), 30));
+        setPreferredSize(new Dimension(creativelyNamedGameEngineFrame.getWidth(), 30));
         setLayout(new FlowLayout());
         setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         ((FlowLayout) getLayout()).setAlignment(FlowLayout.RIGHT);
         ((FlowLayout) getLayout()).setHgap(0);
         ((FlowLayout) getLayout()).setVgap(0);
         setBackground(new Color(0x808080));
-        frame.add(this, BorderLayout.NORTH);
+        creativelyNamedGameEngineFrame.add(this, BorderLayout.NORTH);
         addMouseListener(this);
         addMouseMotionListener(this);
 
@@ -40,7 +40,7 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         min.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                frame.setState(Frame.ICONIFIED);
+                creativelyNamedGameEngineFrame.setState(Frame.ICONIFIED);
             }
 
             @Override
@@ -68,6 +68,7 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         min.add(label);
         this.add(min);
     }
+
     private void maximizeButton() {
         JPanel max = new JPanel();
         max.setBackground(this.getBackground());
@@ -75,18 +76,17 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         max.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(max.getComponent(0));
                 max.remove(max.getComponent(0));
                 if (isFullScreen) {
-                    MyFrame.setWindowed(frame);
+                    MyFrame.setWindowed(creativelyNamedGameEngineFrame);
                     JLabel label = new JLabel();
                     label.setIcon(new ImageIcon("src/main/resources/full.png"));
                     max.add(label);
                 } else {
-                    windowedSize.width = frame.getWidth();
-                    windowedSize.height = frame.getHeight();
-                    windowedLocation = frame.getLocation();
-                    MyFrame.setFullScreen(frame);
+                    windowedSize.width = creativelyNamedGameEngineFrame.getWidth();
+                    windowedSize.height = creativelyNamedGameEngineFrame.getHeight();
+                    windowedLocation = creativelyNamedGameEngineFrame.getLocation();
+                    MyFrame.setFullScreen(creativelyNamedGameEngineFrame);
                     JLabel label = new JLabel();
                     label.setIcon(new ImageIcon("src/main/resources/shrink.png"));
                     max.add(label);
@@ -101,6 +101,7 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
 
             @Override
             public void mouseReleased(MouseEvent e) {
+
             }
 
             @Override
@@ -118,6 +119,7 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         max.add(label);
         this.add(max);
     }
+
     private void closeWindow() {
         JPanel end = new JPanel();
         end.setBackground(this.getBackground());
@@ -125,7 +127,7 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         end.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                frame.dispose();
+                creativelyNamedGameEngineFrame.dispose();
             }
 
             @Override
@@ -162,7 +164,7 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
     @Override
     public void mousePressed(MouseEvent e) {
         initialClick = MouseInfo.getPointerInfo().getLocation();
-        initialFramePos = frame.getLocation();
+        initialFramePos = creativelyNamedGameEngineFrame.getLocation();
     }
 
     @Override
@@ -186,9 +188,9 @@ public class FrameTopBar extends JPanel implements MouseListener, MouseMotionLis
         int deltaY = MouseInfo.getPointerInfo().getLocation().y - initialClick.y;
 
         if(isFullScreen) {
-            MyFrame.setWindowed(frame);
+            MyFrame.setWindowed(creativelyNamedGameEngineFrame);
         }
-        frame.setLocation(initialFramePos.x + deltaX, initialFramePos.y + deltaY);
+        creativelyNamedGameEngineFrame.setLocation(initialFramePos.x + deltaX, initialFramePos.y + deltaY);
     }
 
     @Override

@@ -1,8 +1,10 @@
-package main.me.spaghetti.main.constructors.blocks;
+package main.me.spaghetti.main.Buttons;
+
+import main.me.spaghetti.main.constructors.blocks.MoveBlock;
 
 import java.awt.*;
 
-import static main.me.spaghetti.main.Main.frame;
+import static main.me.spaghetti.main.Main.creativelyNamedGameEngineFrame;
 import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
 
 // replace with a MoveBlock that doesn't know it's outside its area and gets replaced when moved
@@ -13,7 +15,7 @@ public class Buttons {
         new MoveBlock(150, 350, 200, 50, "Sound");
         new MoveBlock(150, 450, 200, 50, "Start");
         new MoveBlock(150, 550, 200, 50, "Control");
-        refreshDisplay(frame);
+        refreshDisplay(creativelyNamedGameEngineFrame);
     }
     public static Color getColorOfType(String type) {
         return switch (type) {
@@ -35,3 +37,4 @@ public class Buttons {
         }
     }
 }
+

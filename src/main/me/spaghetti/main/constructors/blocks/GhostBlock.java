@@ -3,14 +3,14 @@ package main.me.spaghetti.main.constructors.blocks;
 import javax.swing.*;
 import java.awt.*;
 
-import static main.me.spaghetti.main.Main.panel;
+import static main.me.spaghetti.main.Main.primaryPanel;
 
 //todo: if it's in the middle of a stack, the stack needs to be shifted down by the size of the inserted block, but the blocks they think they're connected to should remain unchanged until the block is dropped
 public class GhostBlock extends JPanel {
     MoveBlock snapBlock;
     boolean top;
     public GhostBlock() {
-        panel.add(this);
+        primaryPanel.add(this);
         this.setBackground(new Color(0x505050));
         this.setVisible(false);
         this.getParent().setComponentZOrder(this, 0);
