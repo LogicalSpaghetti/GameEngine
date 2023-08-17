@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Blocks now remember who they're snapped to.">
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/TabButton.java" afterDir="false" />
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Blocks are now dragged as a tower.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FramePrimaryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FramePrimaryPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FrameTopBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/FrameTopBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/Buttons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/RegionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/RegionPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692204073192</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Blocks are now dragged as a tower.">
+      <option name="closed" value="true" />
+      <created>1692213839245</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1692213839246</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -159,7 +160,8 @@
     <MESSAGE value="Block snapping works" />
     <MESSAGE value="Added block snapping." />
     <MESSAGE value="Blocks now remember who they're snapped to." />
-    <option name="LAST_COMMIT_MESSAGE" value="Blocks now remember who they're snapped to." />
+    <MESSAGE value="Blocks are now dragged as a tower." />
+    <option name="LAST_COMMIT_MESSAGE" value="Blocks are now dragged as a tower." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

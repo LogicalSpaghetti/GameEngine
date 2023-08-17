@@ -59,18 +59,19 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     private void fixIfOutside() {
         // deletes the block if it's within the deletion area
         if (inTrash()) {
-            primaryPanel.remove(this);
+            deleteChain(this);
             refreshDisplay(creativelyNamedGameEngineFrame);
             return;
         }
         // if it's outside the blockArea it gets moved to its previous location
         if (isPointOutsideBlockArea(primaryPanel.getMousePosition())) {
-            setLocation(lastLocation);
+            snapBackChain(this, this.lastLocation);
         }
         // if it's still outside the blockArea, then it's deleted
         if (isThisOutsideBlockArea()) {
-            primaryPanel.remove(this);
+            deleteChain(this);
         }
+        refreshDisplay(creativelyNamedGameEngineFrame);
     }
 
     private void moveInChain(MoveBlock block, int newX, int newY) {
@@ -83,10 +84,20 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     private void deleteChain(MoveBlock block) {
         // if the top block should be deleted, delete all its children
+        if (block.bottomBlock != null) {
+            deleteChain(block.bottomBlock);
+        }
+        primaryPanel.remove(block);
     }
 
-    private void snapBackChain(MoveBlock block) {
+    // todo: fix this by remembering all previous locations of child blocks
+    private void snapBackChain(MoveBlock block, Point location) {
         // if the top block is dropped outside the area, snap back all its children too
+        block.setLocation(location);
+        if (block.bottomBlock != null) {
+            //repeat with the bottomBlock at the location below block
+            snapBackChain(block.bottomBlock, new Point(block.getX(), block.getY() + block.getHeight()));
+        }
     }
 
     @Override
@@ -148,7 +159,6 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         moveInChain(this, newX, newY);
 
-        // todo: for the stacking, just save the block on top and the block on bottom and it's done
         // todo: if the block has one above it, don't check for top
         for (MoveBlock block : blocks) {
             if (block.isWithinBlockArea && !block.equals(this)) {
