@@ -65,13 +65,21 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         }
         // if it's outside the blockArea it gets moved to its previous location
         if (isPointOutsideBlockArea(primaryPanel.getMousePosition())) {
-            snapBackChain(this, this.lastLocation);
+            snapBackChain(this);
         }
         // if it's still outside the blockArea, then it's deleted
         if (isThisOutsideBlockArea()) {
             deleteChain(this);
         }
         refreshDisplay(creativelyNamedGameEngineFrame);
+    }
+
+    private void saveLocationInChain(MoveBlock block) {
+        block.lastLocation = block.getLocation();
+
+        if (block.bottomBlock != null) {
+            saveLocationInChain(block.bottomBlock);
+        }
     }
 
     private void moveInChain(MoveBlock block, int newX, int newY) {
@@ -91,12 +99,12 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     }
 
     // todo: fix this by remembering all previous locations of child blocks
-    private void snapBackChain(MoveBlock block, Point location) {
+    private void snapBackChain(MoveBlock block) {
         // if the top block is dropped outside the area, snap back all its children too
-        block.setLocation(location);
+        block.setLocation(block.lastLocation);
         if (block.bottomBlock != null) {
             //repeat with the bottomBlock at the location below block
-            snapBackChain(block.bottomBlock, new Point(block.getX(), block.getY() + block.getHeight()));
+            snapBackChain(block.bottomBlock);
         }
     }
 
@@ -113,7 +121,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         getParent().setComponentZOrder(this, 0);
         initialClick = e.getPoint();
-        lastLocation = this.getLocation();
+        saveLocationInChain(this);
     }
 
     @Override
@@ -132,7 +140,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
             }
         }
         gBlock.setVisible(false);
-        System.out.println("top = " + this.topBlock + "\nbottom = " + this.bottomBlock);
+
     }
 
     @Override
@@ -161,7 +169,8 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         // todo: if the block has one above it, don't check for top
         for (MoveBlock block : blocks) {
-            if (block.isWithinBlockArea && !block.equals(this)) {
+            boolean isChild = this.bottomBlock == block;
+            if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
                 int xDiff = Math.abs(this.getX() - block.getX());
                 int yDiffTop = Math.abs((this.getY() + this.getHeight()) - block.getY());
                 int yDiffBottom = Math.abs(this.getY() - (block.getY() + block.getHeight()));
