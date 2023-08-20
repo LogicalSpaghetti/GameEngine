@@ -4,14 +4,8 @@ import main.me.spaghetti.main.constructors.blocks.MoveBlock;
 
 import java.awt.*;
 
-import static main.me.spaghetti.main.Main.creativelyNamedGameEngineFrame;
-import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
-
 // replace with a MoveBlock that doesn't know it's outside its area and gets replaced when moved
 public class BlockButtons {
-    public static void createButtons() {
-        refreshDisplay(creativelyNamedGameEngineFrame);
-    }
     public static Color getColorOfType(String type) {
         return switch (type) {
             case "Motion" -> new Color(0x0080ff);

@@ -4,7 +4,6 @@ import main.me.spaghetti.main.Buttons.TabButton;
 import main.me.spaghetti.main.constructors.FrameDecoration.FramePrimaryPanel;
 import main.me.spaghetti.main.constructors.FrameDecoration.FrameTopBar;
 import main.me.spaghetti.main.constructors.MyFrame;
-import main.me.spaghetti.main.Buttons.BlockButtons;
 import main.me.spaghetti.main.constructors.blocks.GhostBlock;
 import main.me.spaghetti.main.constructors.blocks.MoveBlock;
 import main.me.spaghetti.main.constructors.FrameDecoration.RegionPanel;
@@ -31,7 +30,6 @@ public class Main {
     public static GhostBlock gBlock = new GhostBlock();
 
     public static void main(String[] args) {
-        BlockButtons.createButtons();
         // todo: take some deep breaths
     }
 }
