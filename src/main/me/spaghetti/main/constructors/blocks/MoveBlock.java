@@ -35,11 +35,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         addMouseListener(this);
         addMouseMotionListener(this);
         if (MoveBlock.isBlockOutsideBlockArea(this)) {
-            if (Objects.equals(type, "Motion")) {
-                setVisible(true);
-            } else {
-                setVisible(false);
-            }
+            setVisible(Objects.equals(type, "Motion"));
         }
         primaryPanel.add(this);
         getParent().setComponentZOrder(this, 0);

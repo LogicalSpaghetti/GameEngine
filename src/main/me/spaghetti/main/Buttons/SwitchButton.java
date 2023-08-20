@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import java.util.Objects;
 
 import static main.me.spaghetti.main.Main.blocks;
-import static main.me.spaghetti.main.Main.tabButton;
 
 public class SwitchButton extends JPanel implements MouseListener {
     public String type;
@@ -37,11 +36,7 @@ public class SwitchButton extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         for (MoveBlock block : blocks) {
             if (MoveBlock.isBlockOutsideBlockArea(block)) {
-                if (Objects.equals(block.type, this.type)) {
-                    block.setVisible(true);
-                } else {
-                    block.setVisible(false);
-                }
+                block.setVisible(Objects.equals(block.type, this.type));
             }
         }
     }
