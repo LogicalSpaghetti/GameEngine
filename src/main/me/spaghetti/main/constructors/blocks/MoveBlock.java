@@ -159,6 +159,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        // todo: take some deep breaths
         if (topBlock != null) {
             topBlock.bottomBlock = null;
         }
@@ -171,7 +172,6 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         moveInChain(this, newX, newY);
 
-        // todo: if the block has one above it, don't check for top
         for (MoveBlock block : blocks) {
             boolean isChild = bottomBlock == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {

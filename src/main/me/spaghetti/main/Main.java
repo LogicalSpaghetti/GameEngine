@@ -30,6 +30,6 @@ public class Main {
     public static GhostBlock gBlock = new GhostBlock();
 
     public static void main(String[] args) {
-        // todo: take some deep breaths
+
     }
 }
