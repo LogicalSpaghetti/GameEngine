@@ -107,7 +107,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         // if the top block is dropped outside the area, snap back all its children too
         block.setLocation(block.lastLocation);
         if (block.bottomBlock != null) {
-            //repeat with the bottomBlock at the location below block
+            // repeat with the bottomBlock at the location below block
             snapBackChain(block.bottomBlock);
         }
     }
