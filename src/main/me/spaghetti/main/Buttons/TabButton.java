@@ -1,38 +1,18 @@
 package main.me.spaghetti.main.Buttons;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.*;
 
-public class TabButton extends JPanel implements MouseListener {
-    // create JPanels that act like JButtons and when clicked will toggle all blocks of their type outside blockArea to visible,
-    // and all others to invisible
+import static main.me.spaghetti.main.Main.addAndDeleteZone;
 
-    // store the TabButtons in a JPanel next to addAndDeleteZone
-    TabButton() {
-    }
-    @Override
-    public void mouseClicked(MouseEvent e) {
+public class TabButton extends JPanel {
+    public TabButton() {
+        setSize(new Dimension(60, addAndDeleteZone.getHeight()));
+        setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+        setLocation(0, 0);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
+        addAndDeleteZone.add(this);
 
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+        SwitchButton.createButtons(this);
     }
 }

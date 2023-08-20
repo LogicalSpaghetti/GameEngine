@@ -1,12 +1,13 @@
 package main.me.spaghetti.main.constructors.blocks;
 
-import main.me.spaghetti.main.Buttons.Buttons;
+import main.me.spaghetti.main.Buttons.BlockButtons;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Objects;
 
 import static main.me.spaghetti.main.Main.*;
 import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
@@ -24,25 +25,31 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     private MoveBlock topBlock;
     private MoveBlock bottomBlock;
 
-    public MoveBlock(int x, int y, int width, int height, String type) {
-        this.isWithinBlockArea = false;
-        this.type = type;
-        this.setBackground(Buttons.getColorOfType(type));
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        this.setBounds(x,y, width, height);
-        this.setSize(width, height);
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
-        this.setVisible(true);
+    public MoveBlock(int x, int y, int width, int height, String blockType) {
+        isWithinBlockArea = false;
+        this.type = blockType;
+        setBackground(BlockButtons.getColorOfType(type));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        setBounds(x,y, width, height);
+        setSize(width, height);
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        if (MoveBlock.isBlockOutsideBlockArea(this)) {
+            if (Objects.equals(type, "Motion")) {
+                setVisible(true);
+            } else {
+                setVisible(false);
+            }
+        }
         primaryPanel.add(this);
         getParent().setComponentZOrder(this, 0);
         refreshDisplay(creativelyNamedGameEngineFrame);
         blocks.add(this);
-        Buttons.setTopOrBottom(this);
+        BlockButtons.setTopOrBottom(this);
     }
 
-    private boolean isThisOutsideBlockArea() {
-        return !blockArea.getBounds().intersects(this.getBounds());
+    public static boolean isBlockOutsideBlockArea(MoveBlock block) {
+        return !blockArea.getBounds().intersects(block.getBounds());
     }
     private boolean isPointOutsideBlockArea(Point point) {
         if (point != null) {
@@ -68,7 +75,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
             snapBackChain(this);
         }
         // if it's still outside the blockArea, then it's deleted
-        if (isThisOutsideBlockArea()) {
+        if (isBlockOutsideBlockArea(this)) {
             deleteChain(this);
         }
         refreshDisplay(creativelyNamedGameEngineFrame);
@@ -96,6 +103,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
             deleteChain(block.bottomBlock);
         }
         primaryPanel.remove(block);
+        blocks.remove(block);
     }
 
     // todo: fix this by remembering all previous locations of child blocks
@@ -115,8 +123,8 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (isThisOutsideBlockArea()) {
-            new MoveBlock(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.type);
+        if (isBlockOutsideBlockArea(this)) {
+            new MoveBlock(getX(), getY(), getWidth(), getHeight(), type);
         }
 
         getParent().setComponentZOrder(this, 0);
@@ -127,16 +135,16 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mouseReleased(MouseEvent e) {
         fixIfOutside();
-        this.isWithinBlockArea = true;
+        isWithinBlockArea = true;
 
         if (gBlock.isVisible()) { // triggers if there's a valid place to snap to
-            this.setLocation(gBlock.getLocation());
+            setLocation(gBlock.getLocation());
             if (gBlock.top) { // true if connecting to the top of a block
                 gBlock.snapBlock.topBlock = this;
-                this.bottomBlock = gBlock.snapBlock;
+                bottomBlock = gBlock.snapBlock;
             } else { // connecting to the bottom of a block
                 gBlock.snapBlock.bottomBlock = this;
-                this.topBlock = gBlock.snapBlock;
+                topBlock = gBlock.snapBlock;
             }
         }
         gBlock.setVisible(false);
@@ -155,10 +163,10 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (this.topBlock != null) {
-            this.topBlock.bottomBlock = null;
+        if (topBlock != null) {
+            topBlock.bottomBlock = null;
         }
-        this.topBlock = null;
+        topBlock = null;
 
         int deltaX = e.getX() - initialClick.x;
         int deltaY = e.getY() - initialClick.y;
@@ -169,14 +177,14 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         // todo: if the block has one above it, don't check for top
         for (MoveBlock block : blocks) {
-            boolean isChild = this.bottomBlock == block;
+            boolean isChild = bottomBlock == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
-                int xDiff = Math.abs(this.getX() - block.getX());
-                int yDiffTop = Math.abs((this.getY() + this.getHeight()) - block.getY());
-                int yDiffBottom = Math.abs(this.getY() - (block.getY() + block.getHeight()));
+                int xDiff = Math.abs(getX() - block.getX());
+                int yDiffTop = Math.abs((getY() + getHeight()) - block.getY());
+                int yDiffBottom = Math.abs(getY() - (block.getY() + block.getHeight()));
 
-                boolean topValid = (yDiffTop <= 40 && !this.isBottom && !block.isTop);
-                boolean bottomValid = (yDiffBottom <= 40 && !this.isTop && !block.isBottom);
+                boolean topValid = (yDiffTop <= 40 && !isBottom && !block.isTop);
+                boolean bottomValid = (yDiffBottom <= 40 && !isTop && !block.isBottom);
                 boolean validConnection = xDiff <= 40 && (topValid || bottomValid);
 
                 if (validConnection) {
