@@ -1,6 +1,7 @@
 package main.me.spaghetti.main.constructors.blocks;
 
 import main.me.spaghetti.main.Buttons.BlockButtons;
+import main.me.spaghetti.main.myMath.Average;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,13 +30,13 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         isWithinBlockArea = false;
         this.type = blockType;
         setBackground(BlockButtons.getColorOfType(type));
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        setBorder(BorderFactory.createLineBorder(border(this.getBackground()), 1));
         setBounds(x,y, width, height);
         setSize(width, height);
         addMouseListener(this);
         addMouseMotionListener(this);
         if (MoveBlock.isBlockOutsideBlockArea(this)) {
-            setVisible(Objects.equals(type, "Motion"));
+            setVisible(Objects.equals(type, currentType));
         }
         primaryPanel.add(this);
         getParent().setComponentZOrder(this, 0);
@@ -43,6 +44,12 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         blocks.add(this);
         BlockButtons.setTopOrBottom(this);
     }
+
+    private Color border(Color color) {
+        // returns the color for a border, which is two parts the original color, and one part gray.
+        return Average.color(new Color[]{color, color, Color.gray});
+    }
+
 
     public static boolean isBlockOutsideBlockArea(MoveBlock block) {
         return !blockArea.getBounds().intersects(block.getBounds());
@@ -159,7 +166,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // todo: take some deep breaths
+        // to do: take some deep breaths
         if (topBlock != null) {
             topBlock.bottomBlock = null;
         }

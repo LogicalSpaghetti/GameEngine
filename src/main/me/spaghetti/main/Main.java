@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Main {
     public static ArrayList<MoveBlock> blocks = new ArrayList<>();
 
+    public static String currentType = "Motion";
     public static boolean isFullScreen = true;
     public static Dimension windowedSize = new Dimension(800, 800);
     public static Point windowedLocation = new Point(0, 0);
@@ -30,6 +31,6 @@ public class Main {
 
     // todo: finish stacking then make the code blocks have elements inside of them.
     public static void main(String[] args) {
-        System.out.println(primaryPanel.getPreferredSize().height);
+
     }
 }
