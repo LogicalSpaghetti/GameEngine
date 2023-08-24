@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="fixed comments">
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Average.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/SwitchButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/SwitchButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Subtract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Difference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/min.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/RegionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/RegionPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Average.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Average.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +46,10 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2TWmr703Orr0GNQsEUvDMhYNpCe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />

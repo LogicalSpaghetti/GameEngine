@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Average {
     public static Color color(Color[] colors) {
-
         int r = 0;
         int g = 0;
         int b = 0;
@@ -13,10 +12,6 @@ public class Average {
             g += color.getGreen();
             b += color.getBlue();
         }
-        r = r/colors.length;
-        g = g/colors.length;
-        b = b/colors.length;
-
-        return new Color(r, g, b);
+        return new Color(r/colors.length, g/colors.length, b/colors.length);
     }
 }

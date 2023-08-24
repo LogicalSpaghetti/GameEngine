@@ -23,9 +23,9 @@ public class Main {
     public static FramePrimaryPanel primaryPanel = new FramePrimaryPanel();
 
     public static RegionPanel blockArea =
-            new RegionPanel(400, 100, 900, 630, Color.lightGray);
+        new RegionPanel(400, 100, 900, 630, Color.lightGray);
     public static RegionPanel addAndDeleteZone =
-            new RegionPanel(50, 100, 350, 630, Color.darkGray);
+        new RegionPanel(50, 100, 350, 630, Color.darkGray);
             public static TabButton tabButton = new TabButton();
     public static GhostBlock gBlock = new GhostBlock();
 
