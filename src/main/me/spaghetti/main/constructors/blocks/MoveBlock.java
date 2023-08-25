@@ -23,8 +23,8 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     public boolean isBottom;
     private boolean isWithinBlockArea;
 
-    private MoveBlock topBlock;
-    private MoveBlock bottomBlock;
+    private MoveBlock parentBlock;
+    private MoveBlock child;
 
     public MoveBlock(int x, int y, int width, int height, String blockType) {
         isWithinBlockArea = false;
@@ -85,25 +85,25 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     }
 
     private void saveLocationInChain(MoveBlock block) {
-        block.lastLocation = block.getLocation();
-
-        if (block.bottomBlock != null) {
-            saveLocationInChain(block.bottomBlock);
+        while (block.child != null) {
+            block.lastLocation = block.getLocation();
+            block = block.child;
         }
+        block.lastLocation = block.getLocation();
     }
 
     private void moveInChain(MoveBlock block, int newX, int newY) {
         block.setLocation(newX, newY);
 
-        if (block.bottomBlock != null) {
-            moveInChain(block.bottomBlock, newX , newY + block.getHeight());
+        if (block.child != null) {
+            moveInChain(block.child, newX , newY + block.getHeight());
         }
     }
 
     private void deleteChain(MoveBlock block) {
         // if the top block should be deleted, delete all its children
-        if (block.bottomBlock != null) {
-            deleteChain(block.bottomBlock);
+        if (block.child != null) {
+            deleteChain(block.child);
         }
         primaryPanel.remove(block);
         blocks.remove(block);
@@ -113,21 +113,26 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     private void snapBackChain(MoveBlock block) {
         // if the top block is dropped outside the area, snap back all its children too
         block.setLocation(block.lastLocation);
-        if (block.bottomBlock != null) {
+        if (block.child != null) {
             // repeat with the bottomBlock at the location below block
-            snapBackChain(block.bottomBlock);
+            snapBackChain(block.child);
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+    private MoveBlock getBottomBlock(MoveBlock block) {
+        while (block.child != null) {
+            block = block.child;
+            System.out.println(block.type);
+        }
+        return block;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        System.out.println("pressed");
         if (isBlockOutsideBlockArea(this)) {
             new MoveBlock(getX(), getY(), getWidth(), getHeight(), type);
+            System.out.println("was outside");
         }
 
         getParent().setComponentZOrder(this, 0);
@@ -136,41 +141,14 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        fixIfOutside();
-        isWithinBlockArea = true;
-
-        if (gBlock.isVisible()) { // triggers if there's a valid place to snap to
-            setLocation(gBlock.getLocation());
-            if (gBlock.top) { // true if connecting to the top of a block
-                gBlock.snapBlock.topBlock = this;
-                bottomBlock = gBlock.snapBlock;
-            } else { // connecting to the bottom of a block
-                gBlock.snapBlock.bottomBlock = this;
-                topBlock = gBlock.snapBlock;
-            }
-        }
-        gBlock.setVisible(false);
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
     public void mouseDragged(MouseEvent e) {
         // to do: take some deep breaths
-        if (topBlock != null) {
-            topBlock.bottomBlock = null;
+        if (parentBlock != null) {
+            parentBlock.child = null;
+            parentBlock = null;
+            System.out.println("happened");
         }
-        topBlock = null;
+        System.out.println("happened 2");
 
         int deltaX = e.getX() - initialClick.x;
         int deltaY = e.getY() - initialClick.y;
@@ -180,13 +158,13 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         moveInChain(this, newX, newY);
 
         for (MoveBlock block : blocks) {
-            boolean isChild = bottomBlock == block;
+            boolean isChild = child == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
                 int xDiff = Math.abs(getX() - block.getX());
                 int yDiffTop = Math.abs((getY() + getHeight()) - block.getY());
                 int yDiffBottom = Math.abs(getY() - (block.getY() + block.getHeight()));
 
-                boolean topValid = (yDiffTop <= 40 && !isBottom && !block.isTop);
+                boolean topValid = (yDiffTop <= 40 && !isBottom && !block.isTop && block.parentBlock == null);
                 boolean bottomValid = (yDiffBottom <= 40 && !isTop && !block.isBottom);
                 boolean validConnection = xDiff <= 40 && (topValid || bottomValid);
 
@@ -198,6 +176,52 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
                 }
             }
         }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (parentBlock != null) {
+            System.out.println("parent = " + parentBlock.type);
+        }
+        System.out.println("this = " + this.type);
+        if (child != null) {
+            System.out.println("child = " + child.type);
+        }
+        System.out.println();
+        fixIfOutside();
+        isWithinBlockArea = true;
+        if (gBlock.isVisible()) { // triggers if there's a valid place to snap to
+
+            if (gBlock.snapBlock.child != null && !gBlock.top) {
+                this.child = gBlock.snapBlock.child;
+                gBlock.snapBlock.child.parentBlock = getBottomBlock(this);
+            }
+
+            moveInChain(this, gBlock.getX(), gBlock.getY());
+            if (gBlock.top) { // true if connecting to the top of a block
+                gBlock.snapBlock.parentBlock = this;
+                child = gBlock.snapBlock;
+            } else { // connecting to the bottom of a block
+                gBlock.snapBlock.child = this;
+                parentBlock = gBlock.snapBlock;
+            }
+        }
+        gBlock.setVisible(false);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
     @Override
