@@ -29,7 +29,6 @@ public class Main {
             public static TabButton tabButton = new TabButton();
     public static GhostBlock gBlock = new GhostBlock();
 
-    // todo: finish stacking then make the code blocks have elements inside of them.
     public static void main(String[] args) {
 
     }
