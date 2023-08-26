@@ -21,17 +21,22 @@ public class SwitchButton extends JPanel implements MouseListener {
         panel.add(this);
     }
     public static void createButtons(JPanel panel) {
+
+        int x = addAndDeleteZone.getX() + panel.getWidth() + 10;
+        int offset = addAndDeleteZone.getY() - 50;
+        int spacing = 50 + 10;
+
         new SwitchButton("Motion", panel);
-            new CodeBlock(150, 125, 200, 50, "moveSteps");
-            new CodeBlock(150, 200, 220, 50, "turnRightDegrees");
+            new CodeBlock(x, offset + spacing, 200, 50, "moveSteps");
+            new CodeBlock(x, offset + 2 * spacing, 220, 50, "turnRightDegrees");
         new SwitchButton("Looks", panel);
-            new CodeBlock(150, 125, 200, 50, "sayForSeconds");
+            new CodeBlock(x, offset + spacing, 200, 50, "sayForSeconds");
         new SwitchButton("Sound", panel);
-            new CodeBlock(150, 125, 200, 50, "playSoundUntilDone");
+            new CodeBlock(x, offset + spacing, 200, 50, "playSoundUntilDone");
         new SwitchButton("Events", panel);
-            new CodeBlock(150, 125, 200, 50, "whenFlagClicked");
+            new CodeBlock(x, offset + spacing, 200, 50, "whenFlagClicked");
         new SwitchButton("Control", panel);
-            new CodeBlock(150, 125, 200, 50, "waitSeconds");
+            new CodeBlock(x, offset + spacing, 200, 50, "waitSeconds");
     }
 
     @Override

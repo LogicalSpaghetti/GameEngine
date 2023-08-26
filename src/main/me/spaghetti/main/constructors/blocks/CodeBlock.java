@@ -31,6 +31,10 @@ public class CodeBlock extends JPanel implements MouseListener, MouseMotionListe
     public ArrayList<BlockThings> thingsInThis = new ArrayList<>();
 
     public CodeBlock(int x, int y, int width, int height, String inSubType) {
+        defineStandards(x, y, width, height, inSubType);
+    }
+
+    public void defineStandards(int x, int y, int width, int height, String inSubType) {
         subType = inSubType;
         type = colorBlocks.subTypeToType(inSubType);
 
@@ -176,7 +180,7 @@ public class CodeBlock extends JPanel implements MouseListener, MouseMotionListe
             boolean isChild = childBlock == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
                 int xDiff = Math.abs(getX() - block.getX());
-                int yDiffTop = Math.abs((getY() + getHeight()) - block.getY());
+                int yDiffTop = Math.abs((getBottomBlock(this).getY() + getBottomBlock(this).getHeight()) - block.getY());
                 int yDiffBottom = Math.abs(getY() - (block.getY() + block.getHeight()));
 
                 boolean topValid = (yDiffTop <= 40 && !isBottom && !block.isTop && block.parentBlock == null);
