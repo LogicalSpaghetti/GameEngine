@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="IT WORKS!!!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="Small tweaks to GhostBlock that allows it to displace blocks to better represent the destination">
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -252,7 +250,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693015465644</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Small tweaks to GhostBlock that allows it to displace blocks to better represent the destination">
+      <option name="closed" value="true" />
+      <created>1693019057407</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1693019057407</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -276,7 +282,8 @@
     <MESSAGE value="small improvements that didn't alter functionality." />
     <MESSAGE value="still broken" />
     <MESSAGE value="IT WORKS!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="IT WORKS!!!" />
+    <MESSAGE value="Small tweaks to GhostBlock that allows it to displace blocks to better represent the destination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small tweaks to GhostBlock that allows it to displace blocks to better represent the destination" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -28,7 +28,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
     public MoveBlock(int x, int y, int width, int height, String blockType) {
         isWithinBlockArea = false;
-        this.type = blockType;
+        type = blockType;
         setBackground(BlockButtons.getColorOfType(type));
         setBorder(BorderFactory.createLineBorder(border(this.getBackground()), 1));
         setBounds(x,y, width, height);
@@ -158,7 +158,6 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         moveInChain(this, newX, newY);
 
-        // todo: if if the block being inserted isTop or isBottom, don't let it try to snap to anywhere mid-stack
         for (MoveBlock block : blocks) {
             boolean isChild = childBlock == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
@@ -167,7 +166,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
                 int yDiffBottom = Math.abs(getY() - (block.getY() + block.getHeight()));
 
                 boolean topValid = (yDiffTop <= 40 && !isBottom && !block.isTop && block.parentBlock == null);
-                boolean bottomValid = (yDiffBottom <= 40 && !isTop && !block.isBottom);
+                boolean bottomValid = (yDiffBottom <= 40 && !isTop && !block.isBottom) && !(isBottom && block.childBlock != null);
                 boolean validConnection = xDiff <= 40 && (topValid || bottomValid);
 
                 if (validConnection) {
@@ -176,11 +175,10 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
                 } else {
                     gBlock.setVisible(false);
                     if (gBlock.snapBlock != null) {
-                        MoveBlock.makeRoomForG(
+                        makeRoomForG (
                                 gBlock.snapBlock,
-                                new Point(
-                                        gBlock.snapBlock.getX(),
-                                        gBlock.snapBlock.getY() + gBlock.snapBlock.getHeight()));
+                                new Point(gBlock.snapBlock.getX(), gBlock.snapBlock.getY() + gBlock.snapBlock.getHeight())
+                        );
                     }
                 }
             }
