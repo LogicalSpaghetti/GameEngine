@@ -8,8 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
 
-import static main.me.spaghetti.main.Main.blocks;
-import static main.me.spaghetti.main.Main.currentType;
+import static main.me.spaghetti.main.Main.*;
 
 public class SwitchButton extends JPanel implements MouseListener {
     public String type;
@@ -18,19 +17,21 @@ public class SwitchButton extends JPanel implements MouseListener {
         setPreferredSize(new Dimension(50, 50));
         setBackground(BlockButtons.getColorOfType(type));
         addMouseListener(this);
+        System.out.println(panel);
+        System.out.println(tabButton);
         panel.add(this);
     }
     public static void createButtons(JPanel panel) {
-        SwitchButton button1 = new SwitchButton("Motion", panel);
+        new SwitchButton("Motion", panel);
             new MoveBlock(150, 125, 200, 50, "Motion");
             new MoveBlock(150, 200, 100, 50, "Motion");
-        SwitchButton button2 = new SwitchButton("Looks", panel);
+        new SwitchButton("Looks", panel);
             new MoveBlock(150, 125, 200, 50, "Looks");
-        SwitchButton button3 = new SwitchButton("Sound", panel);
+        new SwitchButton("Sound", panel);
             new MoveBlock(150, 125, 200, 50, "Sound");
-        SwitchButton button4 = new SwitchButton("Start", panel);
+        new SwitchButton("Start", panel);
             new MoveBlock(150, 125, 200, 50, "Start");
-        SwitchButton button5 = new SwitchButton("Control", panel);
+        new SwitchButton("Control", panel);
             new MoveBlock(150, 125, 200, 50, "Control");
     }
 
