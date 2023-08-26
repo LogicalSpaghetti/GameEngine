@@ -13,10 +13,7 @@ public class MyFrame extends JFrame {
         setTitle(title);
         setSize(500,500);
         setFullScreen(this);
-        BasicFrame();
-    }
 
-    private void BasicFrame() {
         setIconImage(new ImageIcon("src/main/resources/logos/conquest_logo.jpg").getImage());
         setLayout(new BorderLayout()); // makes it easier to position the custom top bar
         setUndecorated(true); //removes the default top bar
