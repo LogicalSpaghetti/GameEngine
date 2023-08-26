@@ -1,5 +1,6 @@
 package main.me.spaghetti.main.constructors.blocks;
 
+import main.me.spaghetti.main.constructors.MyFrame;
 import main.me.spaghetti.main.constructors.thingsInBlocks.presetIcons.text.BlockThings;
 import main.me.spaghetti.main.myMath.Average;
 
@@ -148,6 +149,7 @@ public class CodeBlock extends JPanel implements MouseListener, MouseMotionListe
 
         if (isBlockOutsideBlockArea(this)) {
             new CodeBlock(getX(), getY(), getWidth(), getHeight(), subType);
+            MyFrame.refreshDisplay(creativelyNamedGameEngineFrame);
         }
 
         getParent().setComponentZOrder(this, 0);
