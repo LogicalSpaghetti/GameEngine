@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="still broken">
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="IT WORKS!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -243,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692925969400</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="IT WORKS!!!">
+      <option name="closed" value="true" />
+      <created>1693015465644</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693015465644</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -266,7 +275,8 @@
     <MESSAGE value="fixed comments" />
     <MESSAGE value="small improvements that didn't alter functionality." />
     <MESSAGE value="still broken" />
-    <option name="LAST_COMMIT_MESSAGE" value="still broken" />
+    <MESSAGE value="IT WORKS!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="IT WORKS!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

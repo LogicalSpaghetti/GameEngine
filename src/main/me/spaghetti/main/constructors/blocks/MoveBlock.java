@@ -23,8 +23,8 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     public boolean isBottom;
     private boolean isWithinBlockArea;
 
-    private MoveBlock parentBlock;
-    private MoveBlock childBlock;
+    public MoveBlock parentBlock;
+    public MoveBlock childBlock;
 
     public MoveBlock(int x, int y, int width, int height, String blockType) {
         isWithinBlockArea = false;
@@ -92,7 +92,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         block.lastLocation = block.getLocation();
     }
 
-    private void moveInChain(MoveBlock block, int newX, int newY) {
+    private static void moveInChain(MoveBlock block, int newX, int newY) {
         block.setLocation(newX, newY);
 
         if (block.childBlock != null) {
@@ -125,6 +125,12 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         return block;
     }
 
+    public static void makeRoomForG(MoveBlock top, Point location) {
+        if (top.childBlock != null) {
+            moveInChain(top.childBlock, location.x, location.y);
+        }
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -152,6 +158,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         moveInChain(this, newX, newY);
 
+        // todo: if if the block being inserted isTop or isBottom, don't let it try to snap to anywhere mid-stack
         for (MoveBlock block : blocks) {
             boolean isChild = childBlock == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
@@ -168,6 +175,13 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
                     return;
                 } else {
                     gBlock.setVisible(false);
+                    if (gBlock.snapBlock != null) {
+                        MoveBlock.makeRoomForG(
+                                gBlock.snapBlock,
+                                new Point(
+                                        gBlock.snapBlock.getX(),
+                                        gBlock.snapBlock.getY() + gBlock.snapBlock.getHeight()));
+                    }
                 }
             }
         }
@@ -194,7 +208,6 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
                 parentBlock = destBlock;
             }
             moveInChain(this, gBlock.getX(), gBlock.getY());
-            System.out.println(this.childBlock);
         }
         gBlock.setVisible(false);
     }

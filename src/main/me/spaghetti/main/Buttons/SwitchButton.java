@@ -23,7 +23,7 @@ public class SwitchButton extends JPanel implements MouseListener {
     public static void createButtons(JPanel panel) {
         SwitchButton button1 = new SwitchButton("Motion", panel);
             new MoveBlock(150, 125, 200, 50, "Motion");
-            new MoveBlock(150, 200, 200, 50, "Motion");
+            new MoveBlock(150, 200, 100, 50, "Motion");
         SwitchButton button2 = new SwitchButton("Looks", panel);
             new MoveBlock(150, 125, 200, 50, "Looks");
         SwitchButton button3 = new SwitchButton("Sound", panel);
