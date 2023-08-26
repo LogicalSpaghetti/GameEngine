@@ -5,14 +5,14 @@ import main.me.spaghetti.main.constructors.FrameDecoration.FramePrimaryPanel;
 import main.me.spaghetti.main.constructors.FrameDecoration.FrameTopBar;
 import main.me.spaghetti.main.constructors.MyFrame;
 import main.me.spaghetti.main.constructors.blocks.GhostBlock;
-import main.me.spaghetti.main.constructors.blocks.MoveBlock;
+import main.me.spaghetti.main.constructors.blocks.CodeBlock;
 import main.me.spaghetti.main.constructors.FrameDecoration.RegionPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Main {
-    public static ArrayList<MoveBlock> blocks = new ArrayList<>();
+    public static ArrayList<CodeBlock> blocks = new ArrayList<>();
 
     public static String currentType = "Motion";
     public static boolean isFullScreen = true;

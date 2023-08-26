@@ -6,7 +6,7 @@ import java.awt.*;
 import static main.me.spaghetti.main.Main.primaryPanel;
 
 public  class GhostBlock extends JPanel {
-    MoveBlock snapBlock;
+    CodeBlock snapBlock;
     boolean top;
     public Point lastLocation = new Point(0, 0);
     public GhostBlock() {
@@ -16,7 +16,7 @@ public  class GhostBlock extends JPanel {
         this.getParent().setComponentZOrder(this, 0);
     }
 
-    public static void showGhostBlock(MoveBlock toBlock, MoveBlock toBePlacedBlock, boolean top, GhostBlock ghostBlock) {
+    public static void showGhostBlock(CodeBlock toBlock, CodeBlock toBePlacedBlock, boolean top, GhostBlock ghostBlock) {
 
 
         ghostBlock.snapBlock = toBlock;
@@ -27,7 +27,7 @@ public  class GhostBlock extends JPanel {
             ghostBlock.setLocation(new Point(toBlock.getX(), toBlock.getY() - toBePlacedBlock.getHeight()));
         } else {
             ghostBlock.setLocation(new Point(toBlock.getX(), toBlock.getY() + toBlock.getHeight()));
-            MoveBlock.makeRoomForG(toBlock, new Point(ghostBlock.getX(), ghostBlock.getY() + ghostBlock.getHeight()));
+            CodeBlock.makeRoomForG(toBlock, new Point(ghostBlock.getX(), ghostBlock.getY() + ghostBlock.getHeight()));
             ghostBlock.lastLocation = ghostBlock.getLocation();
         }
         ghostBlock.setVisible(true);

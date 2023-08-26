@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="resolved todos">
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="simplified MyFrame to remove unnecessary abstraction">
+      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/presetIcons/text/BlockThings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/myMath/Contains.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/BlockButtons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/colorBlocks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/SwitchButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/SwitchButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/TabButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/TabButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/GhostBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/MoveBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/blocks/CodeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/userInputs/Stringy/TextInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/userInputs/bool/TrueFalse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/userInputs/doubledouble/Number.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +284,23 @@
       <option name="project" value="LOCAL" />
       <updated>1693020014144</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="resolved warnings in SwitchButton">
+      <option name="closed" value="true" />
+      <created>1693020370279</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1693020370279</updated>
+    </task>
+    <task id="LOCAL-00027" summary="simplified MyFrame to remove unnecessary abstraction">
+      <option name="closed" value="true" />
+      <created>1693020475163</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1693020475163</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,7 +338,9 @@
     <MESSAGE value="Small tweaks to GhostBlock that allows it to displace blocks to better represent the destination" />
     <MESSAGE value="fixed mid-line snapping for end-cap blocks" />
     <MESSAGE value="resolved todos" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolved todos" />
+    <MESSAGE value="resolved warnings in SwitchButton" />
+    <MESSAGE value="simplified MyFrame to remove unnecessary abstraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="simplified MyFrame to remove unnecessary abstraction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

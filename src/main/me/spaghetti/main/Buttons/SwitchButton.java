@@ -1,6 +1,7 @@
 package main.me.spaghetti.main.Buttons;
 
-import main.me.spaghetti.main.constructors.blocks.MoveBlock;
+import main.me.spaghetti.main.constructors.blocks.colorBlocks;
+import main.me.spaghetti.main.constructors.blocks.CodeBlock;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,31 +16,29 @@ public class SwitchButton extends JPanel implements MouseListener {
     public SwitchButton(String type, JPanel panel) {
         this.type = type;
         setPreferredSize(new Dimension(50, 50));
-        setBackground(BlockButtons.getColorOfType(type));
+        setBackground(colorBlocks.getColorOfType(type));
         addMouseListener(this);
-        System.out.println(panel);
-        System.out.println(tabButton);
         panel.add(this);
     }
     public static void createButtons(JPanel panel) {
         new SwitchButton("Motion", panel);
-            new MoveBlock(150, 125, 200, 50, "Motion");
-            new MoveBlock(150, 200, 100, 50, "Motion");
+            new CodeBlock(150, 125, 200, 50, "moveSteps");
+            new CodeBlock(150, 200, 220, 50, "turnRightDegrees");
         new SwitchButton("Looks", panel);
-            new MoveBlock(150, 125, 200, 50, "Looks");
+            new CodeBlock(150, 125, 200, 50, "sayForSeconds");
         new SwitchButton("Sound", panel);
-            new MoveBlock(150, 125, 200, 50, "Sound");
-        new SwitchButton("Start", panel);
-            new MoveBlock(150, 125, 200, 50, "Start");
+            new CodeBlock(150, 125, 200, 50, "playSoundUntilDone");
+        new SwitchButton("Events", panel);
+            new CodeBlock(150, 125, 200, 50, "whenFlagClicked");
         new SwitchButton("Control", panel);
-            new MoveBlock(150, 125, 200, 50, "Control");
+            new CodeBlock(150, 125, 200, 50, "waitSeconds");
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         currentType = type;
-        for (MoveBlock block : blocks) {
-            if (MoveBlock.isBlockOutsideBlockArea(block)) {
+        for (CodeBlock block : blocks) {
+            if (CodeBlock.isBlockOutsideBlockArea(block)) {
                 block.setVisible(Objects.equals(block.type, this.type));
             }
         }

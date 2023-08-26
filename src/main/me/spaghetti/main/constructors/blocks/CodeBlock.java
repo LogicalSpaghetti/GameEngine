@@ -1,6 +1,6 @@
 package main.me.spaghetti.main.constructors.blocks;
 
-import main.me.spaghetti.main.Buttons.BlockButtons;
+import main.me.spaghetti.main.constructors.thingsInBlocks.presetIcons.text.BlockThings;
 import main.me.spaghetti.main.myMath.Average;
 
 import javax.swing.*;
@@ -8,41 +8,53 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static main.me.spaghetti.main.Main.*;
 import static main.me.spaghetti.main.constructors.MyFrame.refreshDisplay;
 
-// "move" int "pixels"
-public class MoveBlock extends JPanel implements MouseListener, MouseMotionListener {
+public class CodeBlock extends JPanel implements MouseListener, MouseMotionListener {
 
     private Point initialClick;
     private Point lastLocation;
     public String type;
-    public boolean isTop;
-    public boolean isBottom;
-    private boolean isWithinBlockArea;
+    public String subType;
+    public boolean isTop = false;
+    public boolean isBottom = false;
+    private boolean isWithinBlockArea = false;
 
-    public MoveBlock parentBlock;
-    public MoveBlock childBlock;
+    public CodeBlock parentBlock;
+    public CodeBlock childBlock;
 
-    public MoveBlock(int x, int y, int width, int height, String blockType) {
-        isWithinBlockArea = false;
-        type = blockType;
-        setBackground(BlockButtons.getColorOfType(type));
+    public ArrayList<BlockThings> thingsInThis = new ArrayList<>();
+
+    public CodeBlock(int x, int y, int width, int height, String inSubType) {
+        subType = inSubType;
+        type = colorBlocks.subTypeToType(inSubType);
+
+        setBackground(colorBlocks.getColorOfType(type));
         setBorder(BorderFactory.createLineBorder(border(this.getBackground()), 1));
         setBounds(x,y, width, height);
         setSize(width, height);
         addMouseListener(this);
         addMouseMotionListener(this);
-        if (MoveBlock.isBlockOutsideBlockArea(this)) {
+        if (CodeBlock.isBlockOutsideBlockArea(this)) {
             setVisible(Objects.equals(type, currentType));
         }
         primaryPanel.add(this);
         getParent().setComponentZOrder(this, 0);
         refreshDisplay(creativelyNamedGameEngineFrame);
         blocks.add(this);
-        BlockButtons.setTopOrBottom(this);
+        setTopOrBottom();
+        BlockThings.addMyThings(this);
+    }
+
+    private void setTopOrBottom() {
+        switch (type) {
+            case "Events" -> isTop = true;
+            case "Control" -> isBottom = true;
+        }
     }
 
     private Color border(Color color) {
@@ -51,7 +63,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     }
 
 
-    public static boolean isBlockOutsideBlockArea(MoveBlock block) {
+    public static boolean isBlockOutsideBlockArea(CodeBlock block) {
         return !blockArea.getBounds().intersects(block.getBounds());
     }
     private boolean isPointOutsideBlockArea(Point point) {
@@ -84,7 +96,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         refreshDisplay(creativelyNamedGameEngineFrame);
     }
 
-    private void saveLocationInChain(MoveBlock block) {
+    private void saveLocationInChain(CodeBlock block) {
         while (block.childBlock != null) {
             block.lastLocation = block.getLocation();
             block = block.childBlock;
@@ -92,7 +104,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         block.lastLocation = block.getLocation();
     }
 
-    private static void moveInChain(MoveBlock block, int newX, int newY) {
+    private static void moveInChain(CodeBlock block, int newX, int newY) {
         block.setLocation(newX, newY);
 
         if (block.childBlock != null) {
@@ -100,7 +112,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         }
     }
 
-    private void deleteChain(MoveBlock block) {
+    private void deleteChain(CodeBlock block) {
         // if the top block should be deleted, delete all its children
         if (block.childBlock != null) {
             deleteChain(block.childBlock);
@@ -109,7 +121,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         blocks.remove(block);
     }
 
-    private void snapBackChain(MoveBlock block) {
+    private void snapBackChain(CodeBlock block) {
         // if the top block is dropped outside the area, snap back all its children too
         block.setLocation(block.lastLocation);
         if (block.childBlock != null) {
@@ -118,14 +130,14 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         }
     }
 
-    private MoveBlock getBottomBlock(MoveBlock block) {
+    private CodeBlock getBottomBlock(CodeBlock block) {
         while (block.childBlock != null) {
             block = block.childBlock;
         }
         return block;
     }
 
-    public static void makeRoomForG(MoveBlock top, Point location) {
+    public static void makeRoomForG(CodeBlock top, Point location) {
         if (top.childBlock != null) {
             moveInChain(top.childBlock, location.x, location.y);
         }
@@ -135,7 +147,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
     public void mousePressed(MouseEvent e) {
 
         if (isBlockOutsideBlockArea(this)) {
-            new MoveBlock(getX(), getY(), getWidth(), getHeight(), type);
+            new CodeBlock(getX(), getY(), getWidth(), getHeight(), subType);
         }
 
         getParent().setComponentZOrder(this, 0);
@@ -158,7 +170,7 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
 
         moveInChain(this, newX, newY);
 
-        for (MoveBlock block : blocks) {
+        for (CodeBlock block : blocks) {
             boolean isChild = childBlock == block;
             if (block.isWithinBlockArea && !block.equals(this) && !isChild) {
                 int xDiff = Math.abs(getX() - block.getX());
@@ -191,16 +203,23 @@ public class MoveBlock extends JPanel implements MouseListener, MouseMotionListe
         fixIfOutside();
         isWithinBlockArea = true;
         if (gBlock.isVisible()) { // triggers if there's a valid place to snap to
-            MoveBlock destBlock = gBlock.snapBlock;
+            CodeBlock destBlock = gBlock.snapBlock;
             //moveInChain(this, gBlock.getX(), gBlock.getY());
 
+            CodeBlock base = getBottomBlock(this);
             if (gBlock.top) { // true if connecting to the top of a block
-                destBlock.parentBlock = getBottomBlock(this);
-                getBottomBlock(this).childBlock = destBlock;
+                destBlock.parentBlock = base;
+                base.childBlock = destBlock;
             } else { // connecting to the bottom of a block
                 if (destBlock.childBlock != null) {
-                    destBlock.childBlock.parentBlock = getBottomBlock(this);
-                    getBottomBlock(this).childBlock = destBlock.childBlock;
+                    if (base.isBottom) {
+                        destBlock.childBlock.parentBlock = null;
+                        destBlock.childBlock.setLocation(base.getX() + (base.getWidth()/2), base.getY() + (base.getHeight()));
+                    } else {
+                        destBlock.childBlock.parentBlock = base;
+                        base.childBlock = destBlock.childBlock;
+                    }
+
                 }
                 destBlock.childBlock = this;
                 parentBlock = destBlock;
