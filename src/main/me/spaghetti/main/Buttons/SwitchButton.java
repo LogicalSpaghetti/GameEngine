@@ -15,6 +15,10 @@ public class SwitchButton extends JPanel implements MouseListener {
     public String type;
     public SwitchButton(String type, JPanel panel) {
         this.type = type;
+        JLabel label = new JLabel(type);
+        label.addMouseListener(this);
+        add(label);
+        setLayout(new GridLayout());
         setPreferredSize(new Dimension(50, 50));
         setBackground(colorBlocks.getColorOfType(type));
         addMouseListener(this);
@@ -22,8 +26,8 @@ public class SwitchButton extends JPanel implements MouseListener {
     }
     public static void createButtons(JPanel panel) {
 
-        int x = addAndDeleteZone.getX() + panel.getWidth() + 10;
-        int offset = addAndDeleteZone.getY() - 50;
+        int x = panel.getParent().getX() + panel.getWidth() + 10;
+        int offset = panel.getParent().getY() - 50;
         int spacing = 50 + 10;
 
         new SwitchButton("Motion", panel);

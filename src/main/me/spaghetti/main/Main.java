@@ -1,12 +1,11 @@
 package main.me.spaghetti.main;
 
-import main.me.spaghetti.main.Buttons.TabButton;
 import main.me.spaghetti.main.constructors.FrameDecoration.FramePrimaryPanel;
 import main.me.spaghetti.main.constructors.FrameDecoration.FrameTopBar;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.*;
 import main.me.spaghetti.main.constructors.MyFrame;
 import main.me.spaghetti.main.constructors.blocks.GhostBlock;
 import main.me.spaghetti.main.constructors.blocks.CodeBlock;
-import main.me.spaghetti.main.constructors.FrameDecoration.RegionPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,14 +21,18 @@ public class Main {
     public static FrameTopBar secondaryPanel = new FrameTopBar();
     public static FramePrimaryPanel primaryPanel = new FramePrimaryPanel();
 
-    public static RegionPanel blockArea =
-        new RegionPanel(350, 100, 750, 700, Color.lightGray);
-    public static RegionPanel addAndDeleteZone =
-        new RegionPanel(0, blockArea.getY(), blockArea.getX(), blockArea.getHeight(), Color.darkGray);
-            public static TabButton tabButton = new TabButton();
+    public static BlockAreaPanel blockArea = new BlockAreaPanel(350, 100, 750, 700, Color.lightGray);
+    public static AddAndDeleteZonePanel addAndDeleteZone = new AddAndDeleteZonePanel(0, blockArea.getY(), blockArea.getX(), blockArea.getHeight(), Color.darkGray);
+
+    public static StagePanel stage = new StagePanel(blockArea.getX() + blockArea.getWidth() + 10, blockArea.getY(), 480, 360, Color.blue);
+
+    public static StageConfigPanel stageConfig = new StageConfigPanel(stage.getX() + stage.getWidth() - 80, stage.getY() + stage.getHeight() + 10, 80, 350, Color.green);
+    public static SpriteConfigPanel spriteConfig = new SpriteConfigPanel(stage.getX(), stage.getY() + stage.getHeight() + 10, stage.getWidth() - stageConfig.getWidth() - 10, 100, Color.cyan);
+    public static SpritesPanel sprites = new SpritesPanel(spriteConfig.getX(), stageConfig.getY(), spriteConfig.getWidth(), stageConfig.getHeight(), Color.magenta);
+
     public static GhostBlock gBlock = new GhostBlock();
 
     public static void main(String[] args) {
-
+        MyFrame.refreshDisplay(creativelyNamedGameEngineFrame);
     }
 }
