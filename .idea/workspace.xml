@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="added the objects within each CodeBlock">
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/AddAndDeleteZonePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/BlockAreaPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/DefineRegion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/SpriteConfigPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/SpritesPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/StageConfigPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/Panels/StagePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/blockIcons/flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/blockIcons/reload.png" afterDir="false" />
+    <list default="true" id="212e0ebe-ff5c-4e4e-b218-075c4ea7c660" name="Changes" comment="created more regions and separated them into individual classes.">
+      <change afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/presetIcons/text/MyTextField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/SwitchButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Buttons/SwitchButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/FrameDecoration/RegionPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/presetIcons/text/BlockThings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/me/spaghetti/main/constructors/thingsInBlocks/presetIcons/text/BlockThings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693074971137</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="created more regions and separated them into individual classes.">
+      <option name="closed" value="true" />
+      <created>1693092712796</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1693092712796</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,7 +345,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial project" />
     <MESSAGE value="Lots of things added" />
     <MESSAGE value="Simplified RescaleImage" />
     <MESSAGE value="I need to be doing this at the end of each day, so I actually remember what I changed." />
@@ -372,7 +369,8 @@
     <MESSAGE value="resolved warnings in SwitchButton" />
     <MESSAGE value="simplified MyFrame to remove unnecessary abstraction" />
     <MESSAGE value="added the objects within each CodeBlock" />
-    <option name="LAST_COMMIT_MESSAGE" value="added the objects within each CodeBlock" />
+    <MESSAGE value="created more regions and separated them into individual classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="created more regions and separated them into individual classes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

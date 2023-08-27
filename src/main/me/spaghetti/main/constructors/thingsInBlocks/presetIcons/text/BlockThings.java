@@ -10,26 +10,41 @@ import java.util.Objects;
 public class BlockThings extends JPanel {
     public BlockThings(CodeBlock block, String type, String text) {
         // either a text display or an image
+
+        JLabel label;
         if (Objects.equals(type, "text")) {
-            JLabel label = new JLabel(text);
-            label.setForeground(Color.lightGray);
-            add(label);
+            label = new JLabel(text);
+            if (Objects.equals(text, "↻") || Objects.equals(text, "↺")) {
+                label.setFont(new Font("Serif", Font.PLAIN, 20));
+            }
+        } else {
+            // only for whenClicked
+            label = new JLabel(new ImageIcon("src/main/resources/blockIcons/flag.png"));
         }
-        block.thingsInThis.add(this);
+        label.setForeground(Color.lightGray); // text color
+        add(label);
+
         setBackground(block.getBackground());
+
+        block.thingsInThis.add(this);
         block.add(this);
     }
 
     public BlockThings(CodeBlock block, String type) {
-        // all user inputs
+        // user inputs
         if (Objects.equals(type, "curvedInput")) {
             setBackground(Color.white);
+            MyTextField textField = new MyTextField("");
+            this.add(textField);
+
+            block.thingsInThis.add(this);
+            block.add(this);
         } else if (Objects.equals(type, "curvedDropdown")) {
             setBackground(Color.white);
         } else if (Objects.equals(type, "squareDropdown")) {
             setBackground(Average.color(new Color[] {block.getBackground(), Color.black}));
         } else {
-            setBackground(Color.gray);
+            setBackground(Color.black);
         }
         block.thingsInThis.add(this);
 
@@ -45,7 +60,7 @@ public class BlockThings extends JPanel {
             }
             case "turnRightDegrees" -> {
                 new BlockThings(block, "text", "turn");
-                new BlockThings(block, "image", "right.png");
+                new BlockThings(block, "text", "↻");
                 new BlockThings(block, "curvedInput");
                 new BlockThings(block, "text", "degrees");
             }
