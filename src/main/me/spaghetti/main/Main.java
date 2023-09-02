@@ -2,10 +2,15 @@ package main.me.spaghetti.main;
 
 import main.me.spaghetti.main.constructors.FrameDecoration.FramePrimaryPanel;
 import main.me.spaghetti.main.constructors.FrameDecoration.FrameTopBar;
-import main.me.spaghetti.main.constructors.FrameDecoration.Panels.*;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.BlockAreaPanel;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.StageConfigPanel;
 import main.me.spaghetti.main.constructors.MyFrame;
-import main.me.spaghetti.main.constructors.blocks.GhostBlock;
 import main.me.spaghetti.main.constructors.blocks.CodeBlock;
+import main.me.spaghetti.main.constructors.blocks.GhostBlock;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.AddAndDeleteZonePanel;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.StagePanel;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.SpriteConfigPanel;
+import main.me.spaghetti.main.constructors.FrameDecoration.Panels.SpritesPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
